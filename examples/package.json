@@ -1,0 +1,22 @@
+{
+	"name": "examples",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.ts",
+	"type": "module",
+	"scripts": {
+		"dev": "node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm index.ts ",
+		"build": "tsc",
+		"start": "node --es-module-specifier-resolution=node --loader ts-node/esm ./build/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"@swc/core": "^1.4.0",
+		"@swc/wasm": "^1.4.0",
+		"cross-env": "^7.0.3",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.3.3"
+	}
+}

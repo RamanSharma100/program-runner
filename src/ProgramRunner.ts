@@ -19,7 +19,7 @@ class ProgramRunner {
 				input,
 				config
 			);
-			return runLanguage.run(input, config);
+			return runLanguage.run();
 		});
 
 		return Promise.all(results);

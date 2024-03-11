@@ -14,6 +14,17 @@ class Availability {
 		return Availability.instance;
 	};
 
+	public getCommand = (language: string): string => {
+		switch (language) {
+			case PROGRAMMING_LANGUAGES.js:
+				return os.type() === 'Windows_NT' ? 'node' : 'node';
+			case PROGRAMMING_LANGUAGES.py:
+				return os.type() === 'Windows_NT' ? 'python' : 'python3';
+			default:
+				return '';
+		}
+	};
+
 	public checkAvailability = async (language: string): Promise<any> => {
 		const osType = os.type();
 		switch (language) {

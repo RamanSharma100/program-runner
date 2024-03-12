@@ -23,7 +23,6 @@ class RunLanguage {
 	private runCode = async (): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			try {
-				console.log(this.command);
 				const command = `${this.command}`;
 				exec(command, (error: any, stdout: any, stderr: any) => {
 					if (error) {
@@ -74,7 +73,9 @@ class RunLanguage {
 							.split(' ')
 							.join('_')}.${this.language}`.replace(/[\s,:\/]/g, '_');
 						this.command =
-							this.availability.getCommand(this.language) + ' ' + fileName;
+							this.availability.getCommand(this.language) +
+							' ' +
+							path.join(__dirname, `../code_files_data/${fileName}`);
 						const code = await Getters.getCode(this.input.value);
 						if (!existsSync(path.join(__dirname, `../code_files_data`))) {
 							await mkdir(path.join(__dirname, `../code_files_data`));
@@ -86,11 +87,11 @@ class RunLanguage {
 						);
 						switch (this.language) {
 							case PROGRAMMING_LANGUAGES.js:
-								this.runCode();
+								resolve(this.runCode());
 
 								break;
 							case PROGRAMMING_LANGUAGES.py:
-								this.runCode();
+								resolve(this.runCode());
 								break;
 							default:
 								resolve({

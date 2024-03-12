@@ -25,7 +25,15 @@ class ProgramRunner {
 				input,
 				config
 			);
-			return runLanguage.run();
+			try {
+				return runLanguage.run();
+			} catch (e: any) {
+				return {
+					input: input,
+					config: config,
+					result: { message: e.message || e, error: true, result: null },
+				};
+			}
 		});
 
 		return Promise.all(results);

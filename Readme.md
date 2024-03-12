@@ -61,7 +61,7 @@ console.log(response);
 
 ### Output
 
-```json
+```bash
 [
   {
     input: {

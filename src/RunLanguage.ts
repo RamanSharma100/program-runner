@@ -1,6 +1,8 @@
-import { writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { exec } from 'node:child_process';
+import { writeFile, mkdir } from 'node:fs/promises';
+
+import { generateUniqueId } from './utils';
 import type { Config, Type, Input } from '../types';
 import { PROGRAMMING_LANGUAGES, DEFAULT_CONFIG } from '../constants';
 
@@ -68,10 +70,10 @@ class RunLanguage {
 							},
 						});
 					} else {
-						const fileName = `output_${new Date()
-							.toLocaleString()
-							.split(' ')
-							.join('_')}.${this.language}`.replace(/[\s,:\/]/g, '_');
+						const fileName = `output_${
+							new Date().toLocaleString().split(' ').join('_') +
+							generateUniqueId()
+						}.${this.language}`.replace(/[\s,:\/]/g, '_');
 						this.command =
 							this.availability.getCommand(this.language) +
 							' ' +

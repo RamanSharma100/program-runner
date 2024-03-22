@@ -1,12 +1,11 @@
 import type { Type } from '../types';
 
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync } from 'fs';
 import DetectCodeType from './DetectCodeType';
 
 class Getters {
 	public static getCode = async (value: string): Promise<string> => {
 		const codeType: Type = DetectCodeType.detect(value);
-
 		try {
 			if (codeType === 'file') {
 				return readFileSync(value, 'utf-8');

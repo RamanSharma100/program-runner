@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 export const DEFAULT_CONFIG = {
 	node: {
 		default: true,
@@ -15,3 +17,5 @@ export enum PROGRAMMING_LANGUAGES {
 	js = 'js',
 	py = 'py',
 }
+
+export const ROOT = path.resolve(path.dirname(''));

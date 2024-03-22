@@ -1,16 +1,16 @@
 import path from 'node:path';
+import { existsSync } from 'node:fs';
 import { exec } from 'node:child_process';
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, mkdir, unlink } from 'node:fs/promises';
 
 import { generateUniqueId } from './utils';
-import type { Config, Type, Input } from '../types';
+import type { Config, Input } from '../types';
 import { PROGRAMMING_LANGUAGES, DEFAULT_CONFIG } from '../constants';
 
 const __dirname = path.resolve(path.dirname(''));
 
 import Getters from './Getters';
 import Availability from './Availaiblity';
-import { existsSync } from 'node:fs';
 
 class RunLanguage {
 	private availability: Availability = Availability.getInstance();
@@ -26,7 +26,8 @@ class RunLanguage {
 		return new Promise((resolve, reject) => {
 			try {
 				const command = `${this.command}`;
-				exec(command, (error: any, stdout: any, stderr: any) => {
+				exec(command, async (error: any, stdout: any, stderr: any) => {
+					await unlink(`${this.command.split(' ')[1]}`);
 					if (error) {
 						reject({
 							input: this.input,

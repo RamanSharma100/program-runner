@@ -6,11 +6,7 @@ class DetectCodeType {
 
 		if (code.startsWith('http') || code.startsWith('https')) {
 			return 'url';
-		} else if (
-			code.includes('.py') ||
-			code.includes('.js') ||
-			code.includes('.java')
-		) {
+		} else if (/^(\.{0,2}[\\/])|([a-zA-Z]:[\\/])/.test(value)) {
 			return 'file';
 		} else {
 			return 'code';

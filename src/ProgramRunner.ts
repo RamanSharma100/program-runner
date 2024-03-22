@@ -1,7 +1,7 @@
+import RunLanguage from './RunLanguage';
+
 import { DEFAULT_CONFIG } from '../constants';
 import type { Config, Input } from '../types';
-
-import RunLanguage from './RunLanguage';
 
 class ProgramRunner {
 	public static run = async (
@@ -36,7 +36,9 @@ class ProgramRunner {
 			}
 		});
 
-		return Promise.all(results);
+		const response = await Promise.all(results);
+
+		return response;
 	};
 }
 

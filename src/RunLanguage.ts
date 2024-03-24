@@ -194,6 +194,28 @@ class RunLanguage {
 								path.join(__dirname, `../code_files_data/${fileName}`);
 						}
 						let code = await Getters.getCode(this.input.value);
+						if (!this.input.type == ('url' as any) && !code) {
+							return reject({
+								input: this.input,
+								config: this.config,
+								result: {
+									message: 'URL is not valid or the file does not exist',
+									error: true,
+									result: null,
+								},
+							});
+						}
+						if (this.input.type === 'file' && !code) {
+							return reject({
+								input: this.input,
+								config: this.config,
+								result: {
+									message: 'File does not exist or is not valid',
+									error: true,
+									result: null,
+								},
+							});
+						}
 						if (!existsSync(path.join(__dirname, `../code_files_data`))) {
 							await mkdir(path.join(__dirname, `../code_files_data`));
 						}

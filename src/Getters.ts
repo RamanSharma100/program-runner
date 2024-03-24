@@ -8,10 +8,18 @@ class Getters {
 		const codeType: Type = DetectCodeType.detect(value);
 		try {
 			if (codeType === 'file') {
-				return readFileSync(value, 'utf-8');
+				try {
+					return readFileSync(value, 'utf-8');
+				} catch (e) {
+					return '';
+				}
 			} else if (codeType === 'url') {
-				const file = await fetch(value).then(response => response.text());
-				return file;
+				try {
+					const file = await fetch(value).then(response => response.text());
+					return file;
+				} catch (e) {
+					return '';
+				}
 			} else {
 				return value;
 			}

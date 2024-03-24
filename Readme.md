@@ -53,10 +53,9 @@ pnpm add program-runner
 
 ## Methods
 
-### ProgramRunner.run
-### ProgramCompiler.compile
+`ProgramRunner.run`
+`ProgramCompiler.compile`
 
-## options
 
 ### ProgramRunner.run
 
@@ -581,10 +580,6 @@ If you like the library, consider supporting the developer by starring the repos
 ## Note
 
 This library is currently in development and is not yet released. The above code is just an example of how the library will work once it is released.
-
-## Release Date
-
-The library will be released on 29 April 2024.
 
 
 # Enjoy Program Runner!

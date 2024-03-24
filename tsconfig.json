@@ -16,6 +16,11 @@
 		"strict": true,
 		"target": "ESNext"
 	},
-	"include": ["./src/**/*.ts", "./tests/**/*.test.ts", "./types/**/*.d.ts"],
+	"include": [
+		"./src/**/*.ts",
+		"./tests/**/*.test.ts",
+		"./types/**/*.d.ts",
+		"./constants/**/*.ts"
+	],
 	"exclude": ["node_modules", "dist", "examples/**/*"]
 }

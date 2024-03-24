@@ -3,15 +3,15 @@ import RunLanguage from './RunLanguage';
 import { DEFAULT_CONFIG } from '../constants';
 import type { Config, Input } from '../types';
 
-class ProgramRunner {
-	public static run = async (
+class ProgramCompiler {
+	public static compile = async (
 		inputs: Input[],
 		config: Config = DEFAULT_CONFIG
 	): Promise<any> => {
-		return ProgramRunner.runProgram(inputs, config);
+		return ProgramCompiler.compileProgram(inputs, config);
 	};
 
-	private static runProgram = async (
+	private static compileProgram = async (
 		inputs: Input[],
 		config: Config
 	): Promise<any> => {
@@ -27,7 +27,8 @@ class ProgramRunner {
 					? 'java'
 					: 'rust',
 				input,
-				config
+				config,
+				true
 			);
 			try {
 				return runLanguage.run();
@@ -46,4 +47,4 @@ class ProgramRunner {
 	};
 }
 
-export default ProgramRunner;
+export default ProgramCompiler;

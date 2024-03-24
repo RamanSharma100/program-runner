@@ -17,11 +17,15 @@ class Availability {
 	public getCommand = (language: string): string => {
 		switch (language) {
 			case PROGRAMMING_LANGUAGES.js:
-				return os.type() === 'Windows_NT' ? 'node' : 'node';
+				return 'node';
 			case PROGRAMMING_LANGUAGES.py:
 				return os.type() === 'Windows_NT' ? 'python' : 'python3';
 			case PROGRAMMING_LANGUAGES.dart:
-				return os.type() === 'Windows_NT' ? 'dart' : 'dart';
+				return 'dart';
+			case PROGRAMMING_LANGUAGES.java:
+				return 'java';
+			case PROGRAMMING_LANGUAGES.rust:
+				return 'rustc';
 			default:
 				return '';
 		}
@@ -31,47 +35,25 @@ class Availability {
 		const osType = os.type();
 		switch (language) {
 			case PROGRAMMING_LANGUAGES.js:
-				return this.checkJsAvailability(
-					osType === 'Windows_NT' ? 'node' : 'node'
-				);
+				return this.checkVersion('node');
 			case PROGRAMMING_LANGUAGES.py:
-				return this.checkPyAvailability(
+				return this.checkVersion(
 					osType === 'Windows_NT' ? 'python' : 'python3'
 				);
 			case PROGRAMMING_LANGUAGES.dart:
-				return this.checkDartAvailability(
-					osType === 'Windows_NT' ? 'where dart' : 'which dart'
-				);
+				return this.checkVersion('dart');
+			case PROGRAMMING_LANGUAGES.java:
+				return this.checkVersion('java');
+			case PROGRAMMING_LANGUAGES.rust:
+				return this.checkVersion('rustc');
 			default:
 				return false;
 		}
 	};
 
-	private checkJsAvailability = async (command: string): Promise<boolean> => {
+	private checkVersion = async (language: string): Promise<boolean> => {
 		return new Promise(resolve => {
-			exec(`${command} -v`, error => {
-				if (error) {
-					resolve(false);
-				}
-				resolve(true);
-			});
-		});
-	};
-
-	private checkPyAvailability = async (command: string): Promise<boolean> => {
-		return new Promise(resolve => {
-			exec(`${command} -V`, error => {
-				if (error) {
-					resolve(false);
-				}
-				resolve(true);
-			});
-		});
-	};
-
-	private checkDartAvailability = async (command: string): Promise<boolean> => {
-		return new Promise(resolve => {
-			exec(`${command}`, error => {
+			exec(`${language} --version`, error => {
 				if (error) {
 					resolve(false);
 				}

@@ -16,12 +16,24 @@ export const DEFAULT_CONFIG = {
 		path: 'dart',
 		venvPath: null,
 	},
+	javaPath: {
+		default: false,
+		path: 'java',
+		venvPath: null,
+	},
+	rust: {
+		default: false,
+		path: 'rustc',
+		venvPath: null,
+	},
 };
 
 export enum PROGRAMMING_LANGUAGES {
 	js = 'js',
 	py = 'py',
 	dart = 'dart',
+	java = 'java',
+	rust = 'rust',
 }
 
 export const ROOT = path.resolve(path.dirname(''));

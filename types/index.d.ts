@@ -8,11 +8,11 @@ export type Config = {
 		default?: boolean;
 		path?: string | null;
 	};
-	// javaPath: {
-	// 	venvPath?: string | null;
-	// 	default?: boolean;
-	// 	path?: string;
-	// };
+	javaPath: {
+		venvPath?: string | null;
+		default?: boolean;
+		path?: string;
+	};
 	python: {
 		venvPath?: string | null;
 		default?: boolean;
@@ -23,12 +23,17 @@ export type Config = {
 		default?: boolean;
 		path?: string | null;
 	};
+	rust: {
+		venvPath?: string | null;
+		default?: boolean;
+		path?: string | null;
+	};
 };
 
 export type Input = {
 	type: Type;
 	value: string;
-	language: 'node' | 'python' | 'java' | 'dart';
+	language: 'node' | 'python' | 'java' | 'dart' | 'rust';
 	commandOptions?: {
 		[key: string]: string | null;
 	};

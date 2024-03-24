@@ -1,4 +1,4 @@
-import ProgramRunner, { type Input } from '../src';
+import ProgramRunner, { ProgramCompiler, type Input } from '../src';
 
 const pythonCode: string = `
 import os
@@ -22,6 +22,22 @@ import 'dart:io';
 void main() {
   print("This Dart code is Running!!");
   print(Directory.current.path);
+}
+`;
+
+const javaCode: string = `
+public class Main {
+	public static void main(String[] args) {
+		System.out.println("This Java code is Running!!");
+		System.out.println(System.getProperty("user.dir"));
+	}
+}
+`;
+
+const rustCode: string = `
+fn main() {
+	println!("This Rust code is Running!!");
+	println!("{:?}", std::env::current_dir());
 }
 `;
 
@@ -56,8 +72,46 @@ const Inputs: Input[] = [
 		language: 'dart',
 		value: './example.dart',
 	},
+	{
+		type: 'code',
+		language: 'java',
+		value: javaCode,
+	},
+	{
+		type: 'file',
+		language: 'java',
+		value: './example.java',
+	},
+	{
+		type: 'code',
+		language: 'rust',
+		value: rustCode,
+	},
+	{
+		type: 'file',
+		language: 'rust',
+		value: './example.rs',
+	},
 ];
+
+console.log('Running the code snippets...');
 
 const response = await ProgramRunner.run(Inputs);
 
 console.log(response);
+
+console.log('Completed running the code snippets!!');
+
+console.log('--------------------------------------');
+
+console.log('Compiling the code snippets...');
+
+const compileResponse = await ProgramCompiler.compile(
+	Inputs.filter(input => input.language === 'java' || input.language === 'rust')
+);
+
+console.log(compileResponse);
+
+console.log('Completed compiling the code snippets!!');
+
+console.log('Thank You!');

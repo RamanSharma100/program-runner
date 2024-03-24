@@ -16,6 +16,15 @@ console.log("This Node.js code is Running!!");
 console.log(__dirname);
 `;
 
+const dartCode: string = `
+import 'dart:io';
+
+void main() {
+  print("This Dart code is Running!!");
+  print(Directory.current.path);
+}
+`;
+
 const Inputs: Input[] = [
 	{
 		type: 'code',
@@ -36,6 +45,16 @@ const Inputs: Input[] = [
 		type: 'file',
 		language: 'node',
 		value: './example.js',
+	},
+	{
+		type: 'code',
+		language: 'dart',
+		value: dartCode,
+	},
+	{
+		type: 'file',
+		language: 'dart',
+		value: './example.dart',
 	},
 ];
 

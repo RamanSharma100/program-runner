@@ -18,12 +18,17 @@ export type Config = {
 		default?: boolean;
 		path?: string | null;
 	};
+	dart: {
+		venvPath?: string | null;
+		default?: boolean;
+		path?: string | null;
+	};
 };
 
 export type Input = {
 	type: Type;
 	value: string;
-	language: 'node' | 'python' | 'java';
+	language: 'node' | 'python' | 'java' | 'dart';
 	commandOptions?: {
 		[key: string]: string | null;
 	};

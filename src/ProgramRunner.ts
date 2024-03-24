@@ -21,6 +21,8 @@ class ProgramRunner {
 					? 'py'
 					: input.language === 'node'
 					? 'js'
+					: input.language === 'dart'
+					? 'dart'
 					: 'java',
 				input,
 				config

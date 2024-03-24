@@ -17,7 +17,7 @@ class RunLanguage {
 	private command: string = '';
 
 	public constructor(
-		private readonly language: 'js' | 'py' | 'java',
+		private readonly language: 'js' | 'py' | 'java' | 'dart',
 		private readonly input: Input,
 		private config: Config = DEFAULT_CONFIG
 	) {}
@@ -94,6 +94,9 @@ class RunLanguage {
 
 								break;
 							case PROGRAMMING_LANGUAGES.py:
+								resolve(this.runCode());
+								break;
+							case PROGRAMMING_LANGUAGES.dart:
 								resolve(this.runCode());
 								break;
 							default:

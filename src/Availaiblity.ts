@@ -20,6 +20,8 @@ class Availability {
 				return os.type() === 'Windows_NT' ? 'node' : 'node';
 			case PROGRAMMING_LANGUAGES.py:
 				return os.type() === 'Windows_NT' ? 'python' : 'python3';
+			case PROGRAMMING_LANGUAGES.dart:
+				return os.type() === 'Windows_NT' ? 'dart' : 'dart';
 			default:
 				return '';
 		}
@@ -35,6 +37,10 @@ class Availability {
 			case PROGRAMMING_LANGUAGES.py:
 				return this.checkPyAvailability(
 					osType === 'Windows_NT' ? 'python' : 'python3'
+				);
+			case PROGRAMMING_LANGUAGES.dart:
+				return this.checkDartAvailability(
+					osType === 'Windows_NT' ? 'where dart' : 'which dart'
 				);
 			default:
 				return false;
@@ -55,6 +61,17 @@ class Availability {
 	private checkPyAvailability = async (command: string): Promise<boolean> => {
 		return new Promise(resolve => {
 			exec(`${command} -V`, error => {
+				if (error) {
+					resolve(false);
+				}
+				resolve(true);
+			});
+		});
+	};
+
+	private checkDartAvailability = async (command: string): Promise<boolean> => {
+		return new Promise(resolve => {
+			exec(`${command}`, error => {
 				if (error) {
 					resolve(false);
 				}

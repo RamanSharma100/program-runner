@@ -11,11 +11,17 @@ export const DEFAULT_CONFIG = {
 		path: 'python',
 		venPath: null,
 	},
+	dart: {
+		default: false,
+		path: 'dart',
+		venvPath: null,
+	},
 };
 
 export enum PROGRAMMING_LANGUAGES {
 	js = 'js',
 	py = 'py',
+	dart = 'dart',
 }
 
 export const ROOT = path.resolve(path.dirname(''));
